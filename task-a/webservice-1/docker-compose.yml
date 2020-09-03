@@ -1,0 +1,9 @@
+version: "3"
+services:
+  webservice-1:
+    image: nginx
+    volumes:
+      - ./:/usr/share/nginx/html/
+    expose:
+      - "80"
+    container_name: webservice-1
