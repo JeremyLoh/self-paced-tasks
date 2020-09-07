@@ -6,7 +6,6 @@ const apiRoutes = require("./api-routes");
 const app = express();
 const port = process.env.PORT || 8080;
 
-app.use("/api", apiRoutes);
 // Configure bodyparser to handle post requests
 app.use(
   bodyParser.urlencoded({
@@ -14,6 +13,7 @@ app.use(
   })
 );
 app.use(bodyParser.json());
+
 // Connect to Mongoose and set connection variable
 mongoose.connect("mongodb://localhost/contacts", {
   useUnifiedTopology: true,
@@ -25,6 +25,8 @@ if (!db) {
 } else {
   console.log("db connected successfully");
 }
+
+app.use("/api", apiRoutes);
 
 // Set default homepage
 app.use("/", (request, response) => {
