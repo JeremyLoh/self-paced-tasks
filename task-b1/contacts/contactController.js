@@ -59,7 +59,7 @@ exports.update = (request, response) => {
     }
     contact.name = request.body.name ? request.body.name : contact.name;
     contact.gender = request.body.gender;
-    contact.email = request.body.email;
+    contact.email = request.body.email ? request.body.email : contact.email;
     contact.phone = request.body.phone;
     // Save the contact and check for errors
     contact.save((err) => {
