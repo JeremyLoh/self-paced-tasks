@@ -1,0 +1,17 @@
+const express = require("express");
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
+const apiRoutes = require("./api-routes");
+
+const app = express();
+const port = process.env.PORT || 8080;
+
+app.use("/api", apiRoutes);
+// Set default homepage
+app.use("/", (request, response) => {
+  response.send("Hello from Express and Nodemon!");
+});
+
+app.listen(port, () => {
+  console.log("Application is listening on port " + port);
+});
