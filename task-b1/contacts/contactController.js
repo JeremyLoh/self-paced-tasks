@@ -21,10 +21,10 @@ exports.index = (request, response) => {
 // Handle create new contact action
 exports.new = (request, response) => {
   const contact = new Contact();
-  contact.name = req.body.name ? req.body.name : contact.name;
-  contact.gender = req.body.gender;
-  contact.email = req.body.email;
-  contact.phone = req.body.phone;
+  contact.name = request.body.name ? request.body.name : contact.name;
+  contact.gender = request.body.gender;
+  contact.email = request.body.email;
+  contact.phone = request.body.phone;
   // Save the contact and check for errors
   contact.save((err) => {
     if (err) {
@@ -40,7 +40,7 @@ exports.new = (request, response) => {
 
 // Handle view contact info
 exports.view = (request, response) => {
-  Contact.findById(req.params.contact_id, (err, contact) => {
+  Contact.findById(request.params.contact_id, (err, contact) => {
     if (err) {
       response.send(err);
     }
@@ -53,14 +53,14 @@ exports.view = (request, response) => {
 
 // Handle update contact info
 exports.update = (request, response) => {
-  Contact.findById(req.params.contact_id, (err, contact) => {
+  Contact.findById(request.params.contact_id, (err, contact) => {
     if (err) {
       response.send(err);
     }
-    contact.name = req.body.name ? req.body.name : contact.name;
-    contact.gender = req.body.gender;
-    contact.email = req.body.email;
-    contact.phone = req.body.phone;
+    contact.name = request.body.name ? request.body.name : contact.name;
+    contact.gender = request.body.gender;
+    contact.email = request.body.email;
+    contact.phone = request.body.phone;
     // Save the contact and check for errors
     contact.save((err) => {
       if (err) {
@@ -76,7 +76,7 @@ exports.update = (request, response) => {
 
 // Handle delete contact
 exports.delete = (request, response) => {
-  Contact.remove({ _id: req.params.contact_id }, (err, contact) => {
+  Contact.remove({ _id: request.params.contact_id }, (err, contact) => {
     if (err) {
       response.send(err);
     }
