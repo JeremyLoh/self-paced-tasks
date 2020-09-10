@@ -1,0 +1,9 @@
+# For task B
+language: node_js
+node_js:
+  - 12
+before_install: cd task-b2
+install:
+  - npm install
+script:
+  - npm run test
