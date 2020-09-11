@@ -6,8 +6,9 @@ exports.index = (req, res) => {
     if (err) {
       res.json({
         status: "error",
-        message: err,
+        message: err.message,
       });
+      return;
     }
     res.json({
       status: "success",
@@ -27,12 +28,16 @@ exports.new = (req, res) => {
   // Save the contact to db
   contact.save((err) => {
     if (err) {
-      res.json(err);
+      res.json({
+        status: "error",
+        message: err.message,
+      });
+      return;
     }
-  });
-  res.json({
-    message: "Created a new contact successfully",
-    data: contact,
+    res.json({
+      message: "Created a new contact successfully",
+      data: contact,
+    });
   });
 };
 
@@ -43,8 +48,9 @@ exports.view = (req, res) => {
     if (err) {
       res.json({
         status: "error",
-        message: err,
+        message: err.message,
       });
+      return;
     }
     res.json({
       status: "success",
@@ -61,8 +67,9 @@ exports.update = (req, res) => {
     if (err) {
       res.json({
         status: "error",
-        message: err,
+        message: err.message,
       });
+      return;
     }
     contact.name = req.body.name ? req.body.name : contact.name;
     contact.email = req.body.email ? req.body.email : contact.email;
@@ -72,8 +79,9 @@ exports.update = (req, res) => {
       if (err) {
         res.json({
           status: "error",
-          message: err,
+          message: err.message,
         });
+        return;
       }
       res.json({
         message: "Contact Info updated",
@@ -90,8 +98,9 @@ exports.delete = (req, res) => {
     if (err) {
       res.json({
         status: "error",
-        message: err,
+        message: err.message,
       });
+      return;
     }
     res.json({
       status: "success",
