@@ -29,3 +29,6 @@ app.use("/", (req, res) => res.send("Hello from Express and Nodemon!"));
 app.listen(port, () => {
   console.log("Application is listening at port " + port);
 });
+
+// Export the application for testing
+module.exports = app;
