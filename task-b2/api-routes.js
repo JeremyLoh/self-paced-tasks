@@ -7,7 +7,8 @@ router
   .route("/contacts/:contact_id")
   .get(controller.view)
   .patch(controller.update)
-  .put(controller.update);
+  .put(controller.update)
+  .delete(controller.delete);
 
 router.use("/", (req, res) => {
   res.json({
