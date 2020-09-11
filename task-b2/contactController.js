@@ -20,10 +20,10 @@ exports.index = (req, res) => {
 // Handle creation of contact
 exports.new = (req, res) => {
   const contact = new contactModel();
-  contact.name = res.body.name ? res.body.name : contact.name;
-  contact.email = res.body.email ? res.body.email : contact.email;
-  contact.phone = res.body.phone;
-  contact.gender = res.body.gender;
+  contact.name = req.body.name ? req.body.name : contact.name;
+  contact.email = req.body.email ? req.body.email : contact.email;
+  contact.phone = req.body.phone;
+  contact.gender = req.body.gender;
   // Save the contact to db
   contact.save((err) => {
     if (err) {
@@ -55,5 +55,31 @@ exports.view = (req, res) => {
 };
 
 // Handle update of contact
-
+exports.update = (req, res) => {
+  const contact_id = req.params.contact_id;
+  contactModel.findById(contact_id, (err, contact) => {
+    if (err) {
+      res.json({
+        status: "error",
+        message: err,
+      });
+    }
+    contact.name = req.body.name ? req.body.name : contact.name;
+    contact.email = req.body.email ? req.body.email : contact.email;
+    contact.phone = req.body.phone ? req.body.phone : contact.phone;
+    contact.gender = req.body.gender ? req.body.gender : contact.gender;
+    contact.save((err) => {
+      if (err) {
+        res.json({
+          status: "error",
+          message: err,
+        });
+      }
+      res.json({
+        message: "Contact Info updated",
+        data: contact,
+      });
+    });
+  });
+};
 // Handle deletion of contact

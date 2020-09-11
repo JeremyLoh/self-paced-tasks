@@ -3,7 +3,11 @@ const controller = require("./contactController");
 
 // Contact routes
 router.route("/contacts").get(controller.index).post(controller.new);
-router.route("/contacts/:contact_id").get(controller.view);
+router
+  .route("/contacts/:contact_id")
+  .get(controller.view)
+  .patch(controller.update)
+  .put(controller.update);
 
 router.use("/", (req, res) => {
   res.json({
