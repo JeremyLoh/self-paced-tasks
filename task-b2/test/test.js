@@ -25,7 +25,6 @@ describe("Contacts", function () {
     );
   });
 
-  // Test the GET route
   describe("GET request for localhost:8080/api/contacts", () => {
     // individual test (it)
     it("it should get all the contacts in db", (done) => {
@@ -40,6 +39,39 @@ describe("Contacts", function () {
           Object.keys(res.body).length.should.be.eql(3);
           // 1 entry in database
           res.body.data.length.should.be.eql(1);
+          done();
+        });
+    });
+  });
+
+  describe("POST request for localhost:8080/api/contacts", () => {
+    it("it should create a new contact", (done) => {
+      const name = "Test";
+      const email = "test@example.com";
+      const phone = "999";
+      const gender = "Male";
+
+      chai
+        .request(application)
+        .post("/api/contacts")
+        .set("content-type", "application/x-www-form-urlencoded")
+        .send({
+          name: name,
+          email: email,
+          phone: phone,
+          gender: gender,
+        })
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.be.a("object");
+          // res.body should have 2 keys (message and data)
+          Object.keys(res.body).length.should.be.eql(2);
+          // Check if created contact matches
+          const contact = res.body.data;
+          contact.name.should.be.eql(name);
+          contact.email.should.be.eql(email);
+          contact.phone.should.be.eql(phone);
+          contact.gender.should.be.eql(gender);
           done();
         });
     });
