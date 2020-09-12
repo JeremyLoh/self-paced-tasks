@@ -94,7 +94,7 @@ exports.update = (req, res) => {
 // Handle deletion of contact
 exports.delete = (req, res) => {
   const contact_id = req.params.contact_id;
-  contactModel.remove({ _id: contact_id }, (err) => {
+  contactModel.deleteOne({ _id: contact_id }, (err) => {
     if (err) {
       res.json({
         status: "error",
