@@ -13,7 +13,11 @@ chai.use(chaiHttp);
 describe("Contacts", function () {
   beforeEach(() => {
     // Remove all entries in db before running each test
-    contactModel.deleteMany({}, (err) => {});
+    contactModel.deleteMany({}, (err) => {
+      if (err) {
+        expect.fail("Could not delete all db entries in beforeEach");
+      }
+    });
     contactModel.create(
       {
         name: "jeremy loh",
