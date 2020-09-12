@@ -21,7 +21,11 @@ describe("Contacts", function () {
         phone: "12345678",
         gender: "Male",
       },
-      (err, contact) => {}
+      (err, contact) => {
+        if (err) {
+          expect.fail("Could not create first entry in beforeEach");
+        }
+      }
     );
   });
 
