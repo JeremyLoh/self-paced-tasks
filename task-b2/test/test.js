@@ -183,5 +183,33 @@ describe("Contacts", function () {
             });
         });
     });
+
+    it("DELETE request: it should delete the first contact created in beforeEach", (done) => {
+      chai
+        .request(application)
+        .get("/api/contacts")
+        .set("content-type", "application/x-www-form-urlencoded")
+        .end((err, res) => {
+          if (err) {
+            expect.fail("Could not obtain first contact_id");
+          }
+          res.should.be.status(200);
+          const contact_id = res.body.data[0]._id;
+          // Attempt to delete contact
+          chai
+            .request(application)
+            .delete("/api/contacts/" + contact_id)
+            .set("content-type", "application/x-www-form-urlencoded")
+            .end((err, res) => {
+              if (err) {
+                expect.fail("Could not delete first contact");
+              }
+              res.should.be.status(200);
+              res.body.status.should.be.eql("success");
+              res.body.message.should.be.eql("Contact deleted");
+              done();
+            });
+        });
+    });
   });
 });
