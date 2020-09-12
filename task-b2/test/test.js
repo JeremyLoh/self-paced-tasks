@@ -144,5 +144,44 @@ describe("Contacts", function () {
             });
         });
     });
+
+    it("PUT request: it should update the first contact's name created in beforeEach", (done) => {
+      const newName = "Test";
+      chai
+        .request(application)
+        .get("/api/contacts/")
+        .set("content-type", "application/x-www-form-urlencoded")
+        .end((err, res) => {
+          if (err) {
+            expect.fail("Could not obtain first contact_id");
+          }
+          const contact = res.body.data[0];
+          const contact_id = contact._id;
+          const email = contact.email;
+          const phone = contact.phone;
+          const gender = contact.gender;
+          // Attempt to update contact
+          chai
+            .request(application)
+            .put("/api/contacts/" + contact_id)
+            .send({
+              name: newName,
+            })
+            .set("content-type", "application/x-www-form-urlencoded")
+            .end((err, res) => {
+              if (err) {
+                expect.fail("Could not update first contact");
+              }
+              res.should.be.status(200);
+              const contact = res.body.data;
+              contact._id.should.be.eql(contact_id);
+              contact.name.should.be.eql(newName);
+              contact.email.should.be.eql(email);
+              contact.phone.should.be.eql(phone);
+              contact.gender.should.be.eql(gender);
+              done();
+            });
+        });
+    });
   });
 });
