@@ -76,4 +76,73 @@ describe("Contacts", function () {
         });
     });
   });
+
+  describe("Tests for localhost:8080/api/contacts/:contact_id", () => {
+    it("GET request: it should obtain the first contact created in beforeEach", (done) => {
+      // Get contact_id
+      chai
+        .request(application)
+        .get("/api/contacts")
+        .set("content-type", "application/x-www-form-urlencoded")
+        .end((err, res) => {
+          if (err) {
+            expect.fail("Could not obtain first contact_id");
+          }
+          const contact_id = res.body.data[0]._id;
+          chai
+            .request(application)
+            .get("/api/contacts/" + contact_id)
+            .set("content-type", "application/x-www-form-urlencoded")
+            .end((err, res) => {
+              if (err) {
+                expect.fail("Could not get first contact");
+              }
+              res.should.be.status(200);
+              res.body.status.should.be.eql("success");
+              const contact = res.body.data;
+              contact._id.should.be.eql(contact_id);
+              done();
+            });
+        });
+    });
+
+    it("PATCH request: it should update the first contact's name created in beforeEach", (done) => {
+      const newName = "Test";
+      chai
+        .request(application)
+        .get("/api/contacts/")
+        .set("content-type", "application/x-www-form-urlencoded")
+        .end((err, res) => {
+          if (err) {
+            expect.fail("Could not obtain first contact_id");
+          }
+          const contact = res.body.data[0];
+          const contact_id = contact._id;
+          const email = contact.email;
+          const phone = contact.phone;
+          const gender = contact.gender;
+          // Attempt to update contact
+          chai
+            .request(application)
+            .patch("/api/contacts/" + contact_id)
+            .send({
+              name: newName,
+            })
+            .set("content-type", "application/x-www-form-urlencoded")
+            .end((err, res) => {
+              if (err) {
+                expect.fail("Could not update first contact");
+              }
+              res.should.be.status(200);
+              const contact = res.body.data;
+              contact._id.should.be.eql(contact_id);
+              contact.name.should.be.eql(newName);
+              contact.email.should.be.eql(email);
+              contact.phone.should.be.eql(phone);
+              contact.gender.should.be.eql(gender);
+              done();
+            });
+        });
+    });
+  });
 });
