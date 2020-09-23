@@ -97,6 +97,11 @@ describe("Contacts", function () {
             expect.fail("Could not obtain first contact_id");
           }
           const contact_id = res.body.data[0]._id;
+          const name = res.body.data[0].name;
+          const email = res.body.data[0].email;
+          const phone = res.body.data[0].phone;
+          const gender = res.body.data[0].gender;
+
           chai
             .request(application)
             .get("/api/contacts/" + contact_id)
@@ -109,6 +114,10 @@ describe("Contacts", function () {
               res.body.status.should.be.eql("success");
               const contact = res.body.data;
               contact._id.should.be.eql(contact_id);
+              contact.name.should.be.eql(name);
+              contact.email.should.be.eql(email);
+              contact.phone.should.be.eql(phone);
+              contact.gender.should.be.eql(gender);
               done();
             });
         });
