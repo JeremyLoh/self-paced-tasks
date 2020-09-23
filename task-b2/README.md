@@ -59,3 +59,31 @@ install:
 script:
   - npm run test
 ```
+
+# Testing on application
+
+There are 6 tests done on the application (in `test/test.js` in the `tast-b2` directory):
+
+1. GET request for localhost:8080/api/contacts
+
+   In the `beforeEach` hook, a new contact model is created and the GET request test should return the created contact model. The response is checked for its status and the number of contact entries returned.
+
+1. POST request for localhost:8080/api/contacts
+
+   The test will create a new contact and check if the created contact object returned is matched.
+
+1. GET request for localhost:8080/api/contacts/:contact_id
+
+   The test will obtain the first contact created in the `beforeEach` hook. A GET request to localhost:8080/api/contacts/ is required to obtain the `contact_id` for the first contact. It will then use that `contact_id` and try to perform a GET request to localhost:8080/api/contacts/:contact_id. The returned response is checked for matching values.
+
+1. PATCH request for localhost:8080/api/contacts/:contact_id
+
+   The test will obtain the first contact's `contact_id` created in the `beforeEach` hook. The `contact_id` will be used to update that same contact with new information with a PATCH request. The returned response object will then be checked.
+
+1. PUT request for localhost:8080/api/contacts/:contact_id
+
+   The test will obtain the first contact's `contact_id` created in the `beforeEach` hook. It will then use the `contact_id` to update that same contact with new information with a PUT request. The returned response object will then be checked for matching fields.
+
+1. DELETE request for localhost:8080/api/contacts/:contact_id
+
+   The test will obtain the first contact's `contact_id` created in the `beforeEach` hook. It will then use the `contact_id` to delete that contact from the database with a DELETE request.
