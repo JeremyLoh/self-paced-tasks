@@ -41,3 +41,21 @@ There are 3 main URLs for the API:
 1. `localhost:8080/api`: this is the root directory of the API and a JSON object will be returned containing a status of `API Homepage` and message of `API is working!`.
 1. `localhost:8080/api/contacts`: this route has 2 possible requests (GET and POST). The GET request is used to obtain all contacts that are present in the database. The POST request can be used to create a new contact entry in the database.
 1. `localhost:8080/api/contacts/:contact_id`: this route has 4 possible requests (GET, PATCH, PUT, DELETE). The `:contact_id` is a contact id assigned to a contact record in the database. These can be viewed by doing a GET request to `localhost:8080/api/contacts`. The GET request is used to obtain information about the specified contact id record. The PATCH and PUT request is used to update a given contact id record in the database. The DELETE request is used to remove the specified contact id record from the database.
+
+# .travis.yml file for Task B2
+
+If the travis file at the root directory of the repository has been modified (for other tasks), please change the `.travis.yml` file at the root directory of the repository to the following:
+
+```yaml
+# For task B
+language: node_js
+services:
+  - mongodb
+node_js:
+  - 12
+before_install: cd task-b2
+install:
+  - npm install
+script:
+  - npm run test
+```
