@@ -10,7 +10,7 @@ Testing is done using [`Mocha` Test Framework](https://mochajs.org/) and [`Chai`
 
 # Running the API
 
-1. Ensure that [Node.js](https://nodejs.org/en/), [MongoDB](https://www.mongodb.com/try/download/community) and [Postman](https://www.postman.com/downloads/) are installed
+1. Ensure that [Node.js](https://nodejs.org/en/), [MongoDB](https://www.mongodb.com/try/download/community) are installed
 1. Clone this repository at https://github.com/JeremyLoh/self-paced-tasks
 1. Open a terminal and navigate to the `task-b2` directory using the `cd` command
 1. Run `npm install`. This will install all dependencies required to run the API
@@ -62,7 +62,7 @@ script:
 
 # Testing on application
 
-There are 6 tests done on the application (in `test/test.js` in the `tast-b2` directory):
+There are 6 tests done on the application (in `test/test.js` in the `task-b2` directory):
 
 1. GET request for localhost:8080/api/contacts
 
