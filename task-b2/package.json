@@ -1,0 +1,24 @@
+{
+  "name": "task-b2",
+  "version": "1.0.0",
+  "description": "A contacts API",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx mocha --exit"
+  },
+  "keywords": [
+    "api",
+    "json"
+  ],
+  "author": "JeremyLoh",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "express": "^4.17.1",
+    "mocha": "^8.1.3",
+    "mongoose": "^5.10.4",
+    "nodemon": "^2.0.4"
+  }
+}
