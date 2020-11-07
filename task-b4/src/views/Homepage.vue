@@ -1,23 +1,21 @@
 <template>
   <b-container>
-    <h1>Homepage</h1>
-    <b-button id="addContactBtn" @click="showAddForm">Add Contact</b-button>
+    <AddContact class="mt-3"/>
     <Contact />
   </b-container>
 </template>
 
 <script>
 import Contact from '../components/Contact';
+import AddContact from '../components/AddContact';
 
 export default {
   name: 'Homepage',
   components: {
     Contact,
+    AddContact,
   },
   methods: {
-    showAddForm() {
-      this.$refs['add-form'].show();
-    },
   },
 }
 </script>
