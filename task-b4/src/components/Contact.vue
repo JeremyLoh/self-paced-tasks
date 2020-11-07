@@ -53,9 +53,8 @@ export default {
   methods: {
     ...mapActions(['fetchContacts', 'deleteContact']),
     onDelete(contact) {
-      console.log("delete");
-      console.log(JSON.stringify(contact));
-      this.deleteContact(contact);
+      const contact_id = contact._id;
+      this.deleteContact(contact_id);
     },
   },
   computed: mapGetters(['allContacts']),
