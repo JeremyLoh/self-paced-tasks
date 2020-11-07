@@ -19,7 +19,7 @@ Object.keys(rules).forEach((rule) => {
 
 // Install veevalidate components globally
 Vue.component("ValidationProvider", ValidationProvider);
-Vue.component("ValidationObserver ", ValidationObserver);
+Vue.component("ValidationObserver", ValidationObserver);
 
 // Install BootstrapVue
 Vue.use(BootstrapVue);
