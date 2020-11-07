@@ -1,13 +1,13 @@
 <template>
   <div id="app">
-    <b-navbar id="nav" variant="primary" type="dark" sticky="top">
+    <b-navbar id="nav" variant="primary" type="dark" sticky>
       <b-navbar-brand href="#">Contacts</b-navbar-brand>
       <b-navbar-nav>
         <b-nav-item to="/">Home</b-nav-item>
         <b-nav-item to="/about">About</b-nav-item>
       </b-navbar-nav>
     </b-navbar>
-    
+
     <router-view />
   </div>
 </template>
