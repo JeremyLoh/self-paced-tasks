@@ -2,7 +2,7 @@
   <div class="text-left mb-3">
     <h3>Add Contact</h3>
     <b-card>
-      <b-form @submit.prevent="onSubmit">
+      <b-form @submit.prevent="onSubmit" v-if="show">
         <b-form-group label="Name:">
           <b-form-input required
             v-model="name"
@@ -55,14 +55,25 @@ export default {
         gender: this.gender, 
         phone: this.phone
       });
+      // Clear form
+      this.name= "";
+      this.email = "";
+      this.gender = "";
+      this.phone = "";
+      // Trick to reset/clear native browser form validation state
+      this.show = false
+      this.$nextTick(() => {
+        this.show = true
+      })
     },
   },
   data() {
       return {
-        name: '',
-        email: '',
-        gender: '',
-        phone: '',
+        name: "",
+        email: "",
+        gender: "",
+        phone: "",
+        show: true,
       }
   },
 }
