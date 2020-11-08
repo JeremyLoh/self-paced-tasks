@@ -55,6 +55,7 @@ Deletion of any contact is done by pressing the delete button for each individua
 1. vee-validate: https://logaretm.github.io/vee-validate/guide/rules.html#installing-all-rules
 1. BootstrapVue: https://bootstrap-vue.org/docs
 1. Vue passing data back to parent using \$emit: https://forum.vuejs.org/t/passing-data-back-to-parent/1201/2
+1. Vuex crash course: https://youtu.be/5lVQgZzLMHc
 
 ### Customize configuration
 
