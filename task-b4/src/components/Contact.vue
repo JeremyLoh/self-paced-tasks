@@ -34,6 +34,10 @@
           </b-list-group>
           
           <div class="text-right">
+            <b-button @click.prevent="editContact(contact)" variant="info"
+              class="mr-2">
+              Edit
+            </b-button>
             <b-button @click.prevent="onDelete(contact)" variant="danger">
               Delete
             </b-button>
@@ -55,6 +59,9 @@ export default {
     onDelete(contact) {
       const contact_id = contact._id;
       this.deleteContact(contact_id);
+    },
+    editContact(contact) {
+      this.$emit('showEditModal', contact);
     },
   },
   computed: mapGetters(['allContacts']),

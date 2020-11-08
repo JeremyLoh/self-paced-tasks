@@ -54,6 +54,13 @@ const actions = {
       create_date: create_date,
     });
   },
+  async editContact({ commit }, contact) {
+    const contact_id = contact._id;
+    const response = await axios.put(`/api/contacts/${contact_id}`, contact);
+    if (response.status === 200) {
+      commit("updateContact", contact);
+    }
+  },
 };
 // Used to change state
 const mutations = {
@@ -65,6 +72,17 @@ const mutations = {
   },
   deleteContact: (state, id) => {
     state.contacts = state.contacts.filter((contact) => contact._id !== id);
+  },
+  updateContact: (state, contact) => {
+    state.contacts = state.contacts.map((obj) => {
+      if (obj._id === contact._id) {
+        return {
+          ...contact,
+          create_date: obj.create_date,
+        };
+      }
+      return obj;
+    });
   },
 };
 
