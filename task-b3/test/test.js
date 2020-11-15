@@ -56,8 +56,6 @@ describe("Contacts", function () {
           res.body.should.be.a("object");
           // res.body should have 3 keys (status, message and data)
           Object.keys(res.body).length.should.be.eql(3);
-          // 1 entry in database
-          res.body.data.length.should.be.eql(1);
           done();
         });
     }).timeout(5000);
