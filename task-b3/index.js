@@ -11,6 +11,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // parse application/json
 app.use(bodyParser.json());
 
+console.log("process.env.TEST_DB_URL");
+console.log(process.env.TEST_DB_URL);
+
 // Server url
 const mongoDbUrl =
   process.env.TEST_DB_URL ||
