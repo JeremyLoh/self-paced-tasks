@@ -35,6 +35,15 @@ describe("Contacts", function () {
     );
   });
 
+  after(() => {
+    // Remove all entries in db
+    contactModel.deleteMany({}, (err) => {
+      if (err) {
+        expect.fail("Could not delete all db entries in beforeEach");
+      }
+    });
+  });
+
   describe("GET request for localhost:8080/api/contacts", () => {
     // individual test (it)
     it("it should get all the contacts in db", (done) => {
