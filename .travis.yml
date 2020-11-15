@@ -9,10 +9,19 @@ before_install: cd task-b3
 install:
   - npm install
   - npm install -g serverless
+before_script:
+  - serverless config credentials --provider aws --key $aws_key --secret $aws_secret
 script:
   - npm run test
 after_success:
   - sls deploy
+env:
+  global:
+    # aws_secret
+    - secure: "ZzEwBchWZ6zbKSxs5jOUl/vT37kcnrjEj6XludHgewc0CgMqN57xR4r8VTz8gFUHZZS5N7KZxlWpV/lZFvKqIUAg7LE6orpQZJIrJ5RVmQk4jCliF84WJXppWAGnc67Nukh5qgURm/3qq6zkoaqYhJz3pY4T04jRmIL5qGx4A/m36V8hFQAePpPcLt3n75CPc5nVVGQrcIpnHiBnn50sxARpu9CKwEYhixlLrkcB8YZQst5+D627T9vCNAebi4Hbd/VL/eL/yAoUWy4fMIanjXfXErSplfYcNvgAow2Wa33q/Rr02Z7RPdozpBfj7UPiKYbPnSkiQaY2ARqforS/tcVXuxH9DBhJIs9gK29F3abCfUPl5rtPRU/kIp/poDJFFSjlmrL6GShc6lgT14khvZezrsDO3AkUGlOPCTBRz6pXlVgfIE0AIRcs/fk0dpn8pEZI8c79lBuzEHgxv6UuqcPfoQWNLdaWj3diNJrTkKzf/riEAQ7/ty7j5MbRXNDmglcHOl/W+s2VNZibUPwzvrZBwnix391tRampcn73iGIo/bZpHKxYZltkyIHfl14gD4jWtUJSuKSZh5BUB66cNsDfALoTRnSmnFx2rDyIoENWOL2VOdHmKzQEBlcLMKjWHMKZLlgvvnlaj3CFgatjkLUIWUilymQFLJtMyrBmwic="
+
+    # aws_key
+    - secure: "GerX0Mj+hYzmyykQeZJlfucCI2cagba2TMR8I4L4ll6kpCpyLb2nwFEVmOJavSkSSPNKpvuq1W4/xvARwkSuZyoM2XJLfhanhdA0n9z1Ws/Jzw2ZmlxQpFtyeEXDGekRBwpoKlsxdGfssJWXFJavhvK0qQJKkaClOlktc4P750NpaKFVe97d4B5hPE+y1Lenoav3ku1URoM0u6AV8BVLz7SDL9i032f2xEtuF+0hicmf2JIf7W2xsQVGenuTyKs3Fp7yyEanYf6210wT5p09bbTseEfPGwQrWrkHDEGtQLujDnZOtXFaTDsdFOKAkg566OsrSAkSzVFGB2PJsBvtqySzf4J5/4Os5iuSh2DX+A06FHWHfIdy0QFF576HAke1BA0S6LfjAaWDg3W2jSXuW9ovNsxJ0YFL7jRkx4wH6hw6jmkpslyXzXVSaCg7iI8asKyiq/jGhNzPN1iZrmUGa7Pgmp1tJHpr/GZjXrOwXpQjWCz/SE4AxUd99qEIsWqRUP+XLm2xqvodG+LZiPTED8ZlfgjTZ0AX383YJ/6epne1pIpZjURnZnqSW4JBBJK/I3OLZa+Zph2FkCvdUuqwakNxgicbT5f11CuBMIi/J899pv347ETOZVltLLuLkZ81PBdumuXb/34mQ70th7ZTzyQLbCSqZCK4Z9qgK0Anmu4="
 # # For task B
 # language: node_js
 # services:
