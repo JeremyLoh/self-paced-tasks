@@ -1,0 +1,28 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "A contacts API",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx mocha --exit"
+  },
+  "keywords": [
+    "api",
+    "json"
+  ],
+  "author": "JeremyLoh",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "express": "^4.17.1",
+    "mocha": "^8.2.0",
+    "mongoose": "^5.10.11",
+    "nodemon": "^2.0.6",
+    "serverless-http": "^2.6.0"
+  },
+  "devDependencies": {
+    "serverless-offline": "^6.8.0"
+  }
+}
