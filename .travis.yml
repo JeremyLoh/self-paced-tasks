@@ -1,11 +1,26 @@
-# For task B
+# For task B3
 language: node_js
 services:
   - mongodb
 node_js:
   - 12
-before_install: cd task-b2
+cache: npm
+before_install: cd task-b3
 install:
   - npm install
+  - npm install -g serverless
 script:
   - npm run test
+after_success:
+  - sls deploy
+# # For task B
+# language: node_js
+# services:
+#   - mongodb
+# node_js:
+#   - 12
+# before_install: cd task-b2
+# install:
+#   - npm install
+# script:
+#   - npm run test
